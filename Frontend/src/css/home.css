@@ -1,0 +1,290 @@
+/* Navbar.css */
+
+
+.Logo{
+  font-family: 'Matemasie';
+  font-size: 42px;
+  color: rgb(239,226,112);
+
+
+}
+nav {
+  /* Adjust background color as needed */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-around; /* Align items to the edges */
+  align-items: center;
+  font-size: 24px;
+  font-family: 'Roboto', sans-serif;
+ 
+  
+ /* Light background color, adjust as needed */
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  margin-top: 30px;
+  margin: 0;
+  padding: 0;
+  
+}
+
+li {
+  margin-right: 20px;
+ 
+}
+
+li:last-child {
+  margin-right: 0;
+}
+
+a {
+  text-decoration: none;
+  
+ /* color:rgb(194,254,252);*/
+  color: rgb(239,226,112); /* Adjust text color as needed */
+  font-weight: bold;
+}
+
+a:hover {
+  color: #007BFF; /* Adjust hover color as needed */
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+
+  li:last-child {
+    margin-bottom: 0;
+  }
+}
+.hero-section {
+position: relative;
+  height: 700px;
+  background-image: url('../../public/college.jpg'); /* Ensure this path is correct */
+  background-size: cover;
+  background-position: center;
+ 
+}
+
+
+
+/* Feature.css */
+
+.Ftitle{
+  color: rgb(224,72,97);
+  margin-top: 15px;
+
+}
+
+
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-family: 'Roboto';
+
+  
+  padding: 20px;
+ /* Light background color 
+  border-radius: 8px; /* Rounded corners */
+   /* Subtle shadow */
+ 
+
+}
+
+
+
+
+
+.feature-content {
+  padding: 20px;
+  
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  height: max-content;
+  margin: 12px;
+ color: #3A1078;
+ background-color: #FFF;
+  
+ 
+}
+
+.feature-title {
+  font-size: 1.5rem;
+ /* Dark text color for contrast */
+  margin-bottom: 10px;
+  text-align: center;
+  color: #FF4191;
+}
+
+.feature-text {
+  font-size: 1rem;
+   /* Slightly lighter text color */
+  margin: 10px;
+  text-align: center;
+  font-weight: bolder;
+ 
+}
+
+.feature-image{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #FFF;
+}
+
+.feature-image img {
+  height: 200px;
+  
+}
+
+@media (min-width: 768px) {
+  .feature {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .feature-img {
+    width: 50%;
+    height: 100%; /* Adjust height as needed */
+  }
+
+  .feature-content {
+    width: 50%;
+    padding: 20px;
+    text-align: left;
+  }
+
+  .feature-title {
+    font-size: 2rem;
+  }
+
+  .feature-text {
+    font-size: 1.2rem;
+  }
+}
+
+.Ftitle{
+   text-align: center;
+   font-family: 'Roboto';
+   font-size: 48px;
+   
+}
+
+.feature-section{
+  /*background-color: rgb(240,227,216);*/
+  margin: 0px;
+}
+
+
+
+/* footer  */
+
+/* Footer.css */
+.footer {
+  background-color: #000;
+  color: #fff;
+  padding: 40px 0;
+  text-align: center;
+  font-family: 'Roboto';
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-logo h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.footer-address,
+.footer-social {
+  margin-bottom: 20px;
+}
+
+.footer-address h4,
+.footer-social h4 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.footer-address p,
+.footer-social ul {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+.footer-social ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-social ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.footer-social ul li a {
+  color: #fff;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.footer-social ul li a:hover {
+  color: #007BFF; /* Change this to your preferred hover color */
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  border-top: 1px solid #444;
+  padding-top: 20px;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-logo h2 {
+    font-size: 1.8rem;
+  }
+
+  .footer-address h4,
+  .footer-social h4 {
+    font-size: 1.3rem;
+  }
+
+  .footer-address p,
+  .footer-social ul li a {
+    font-size: 1rem;
+  }
+}
