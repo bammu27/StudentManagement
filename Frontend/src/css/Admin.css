@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f8;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.admin-form {
+    background-color: white;
+    margin-top: 30px;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+    max-width: 500px;
+    width: 80%;
+    
+}
+
+.admin-form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 1.8rem;
+}
+
+.admin-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.admin-form input {
+    width: 90%;
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    
+}
+
+.admin-form input:focus {
+    border-color: #1e90ff;
+    outline: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #1c7ed6;
+}
+
+@media (max-width: 600px) {
+    .student-form {
+        padding: 1.5rem;
+    }
+
+    .student-form h2 {
+        font-size: 1.5rem;
+    }
+
+    .student-form input {
+        padding: 0.6rem;
+    }
+
+    .submit-btn {
+        padding: 0.6rem;
+    }
+}
+
+.alert {
+    padding: 0.8rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    color: #C7253E;
+    text-align: center;
+    margin-top: 12px;
+    font-weight: bold;
+
+}
+
+
+.toggle-btn {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    border: none; /* Remove borders */
+    border-radius: 5px; /* Rounded corners */
+    margin-left: 8px;
+    cursor: pointer; /* Mouse pointer on hover */
+    font-size: 14px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+  }
+  
+  .toggle-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  .toggle-btn:focus {
+    outline: none; /* Remove focus outline */
+  }

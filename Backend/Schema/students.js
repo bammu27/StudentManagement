@@ -63,6 +63,10 @@ const studentSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    imagePath: {
+        type: String,
+        default: ''
+    }
 
 
     }
@@ -87,7 +91,7 @@ studentSchema.post('save',function(next){
         from: process.env.MY_EMAIL, // Sender's email address
         to: this.Email, // Recipient's email address (can be multiple, comma-separated)
         subject: 'Your syudent id', // Email subject
-        text: `Hello, welcome to out school: \n your srudent id ${this.studentId}`, // Plain text message
+        text: `Hello, welcome to out school: \n your student id ${this.studentId}`, // Plain text message
         // You can also use `html: '<b>Hello, world!</b>'` to send an HTML email
     };
     

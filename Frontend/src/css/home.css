@@ -1,91 +1,129 @@
 /* Navbar.css */
-
-
-.Logo{
-  font-family: 'Matemasie';
-  font-size: 42px;
-  color: rgb(239,226,112);
-
-
-}
-nav {
-  /* Adjust background color as needed */
-  padding: 10px 20px;
+/* Navbar styles */
+.navbar {
   display: flex;
-  justify-content: space-around; /* Align items to the edges */
+  justify-content: space-around;
   align-items: center;
-  font-size: 24px;
-  font-family: 'Roboto', sans-serif;
- 
-  
- /* Light background color, adjust as needed */
+  padding: 0.5rem 1rem;
+ font-family: 'Roboto','sans-serif';
+  color:#F9E400;
 }
 
-ul {
-  display: flex;
-  list-style: none;
-  margin-top: 30px;
-  margin: 0;
-  padding: 0;
-  
-}
-
-li {
-  margin-right: 20px;
- 
-}
-
-li:last-child {
-  margin-right: 0;
-}
-
-a {
-  text-decoration: none;
-  
- /* color:rgb(194,254,252);*/
-  color: rgb(239,226,112); /* Adjust text color as needed */
+.logo {
+  font-size: 2.3rem;
   font-weight: bold;
 }
 
-a:hover {
-  color: #007BFF; /* Adjust hover color as needed */
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
 }
 
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  ul {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  li {
-    margin-bottom: 10px;
-  }
-
-  li:last-child {
-    margin-bottom: 0;
-  }
+.nav-links li {
+  margin-left: 20px;
+  position: relative;
 }
+
+.nav-links li a {
+ 
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.nav-links li a:hover {
+  color: #f0a500;
+}
+
+/* Dropdown styles */
+.dropdown-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color:#F9E400;
+  font-weight: bold;
+
+}
+
+.dropdown-content {
+  display: block;
+  position: absolute;
+  background-color:white;
+  color: rgb(66, 55, 55);
+  min-width: 150px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.9);
+  z-index: 1;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+
+  color: white;
+}
+
+
 .hero-section {
 position: relative;
   height: 700px;
   background-image: url('../../public/college.jpg'); /* Ensure this path is correct */
   background-size: cover;
   background-position: center;
+  width: 100%;
  
 }
 
 
+/* Navbar.css */
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .logo {
+    margin-top: 2.2rem;
+    font-size: 1.5rem;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+
+  .nav-links li a {
+    font-size: 1rem;
+  }
+  .navbar button{
+    font-size: 1.2rem;
+
+
+  }
+}
 
 /* Feature.css */
 
 .Ftitle{
-  color: rgb(224,72,97);
+  color:#F9E400;
   margin-top: 15px;
+  font-family: 'Nerko One',sans-serif;
 
 }
 
@@ -97,6 +135,8 @@ position: relative;
   justify-content: space-around;
   align-items: center;
   font-family: 'Roboto';
+  color: #625757;
+
 
   
   padding: 20px;
@@ -118,8 +158,10 @@ position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   height: max-content;
   margin: 12px;
- color: #3A1078;
+
  background-color: #FFF;
+
+
   
  
 }
@@ -129,7 +171,7 @@ position: relative;
  /* Dark text color for contrast */
   margin-bottom: 10px;
   text-align: center;
-  color: #FF4191;
+
 }
 
 .feature-text {
@@ -287,4 +329,28 @@ position: relative;
   .footer-social ul li a {
     font-size: 1rem;
   }
+}
+
+#blur-layer{
+
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.Signup {
+  margin: 10px;
+  border-radius: 5px;
+  display: inline;
+  font-family: 'Roboto';  
+  font-size: 1.5rem;
+  color: #F9E400; /* Text color */
+  background-color: transparent; /* No background color */
+  padding: 5px 10px; /* Optional padding for better text spacing */
+  border:none;
+  font-weight: bold;
 }

@@ -1,5 +1,8 @@
-const Admin = require('../models/admin.js')
-const Student = require('../models/students.js');
+const Admin = require('../Schema/admin.js')
+const Student = require('../Schema/students.js');
+const User = require('../Schema/user.js');
+const fs = require('fs');
+const path = require('path');
 
 module.exports.getAllStudents = async (req, res) => {
     const AdminId = req.params.AdminId;
@@ -24,47 +27,87 @@ module.exports.updateStudent = async (req, res) => {
     const { AdminId, studentId } = req.params;
 
     try {
-        const admin = await Admin.findOne({AdminId});
+        
+        const admin = await Admin.findOne({ AdminId });
+        if (!admin) {
+            return res.status(403).send("You are not authorized to update this student");
+        }
 
-        if (admin) {
-            const student = await Student.findOneAndUpdate(
-                { studentId: studentId, class: admin.class }, // Ensure the student belongs to the same class
-                req.body, // The updated data
-                { new: true, runValidators: true } // Options: return the updated document and run validators
-            );
+        const student = await Student.findOneAndUpdate(
+            { studentId: studentId, class: admin.class },
+            req.body,
+            { new: true, runValidators: true }
+        );
 
-            if (student) {
-                res.status(200).send(student);
-            } else {
-                res.status(404).send("Student not found");
-            }
+        if (student) {
+            res.status(200).send(student);
         } else {
-            res.status(403).send("You are not authorized to update this student");
+            res.status(404).send("Student not found");
         }
     } catch (error) {
+        console.error('Error updating student:', error);
         res.status(500).send({ message: error.message });
     }
 };
 
+
 // Delete Student
-module.exports.deleteStudent = async (req, res) => {
+module.exports.deleteStudentAndUser = async (req, res) => {
     const { AdminId, studentId } = req.params;
 
     try {
-        const admin = await Admin.findOne({AdminId});
+        // Find the admin
+        const admin = await Admin.findOne({ AdminId });
 
-        if (admin) {
-            const student = await Student.findOneAndDelete({ studentId: studentId, class: admin.class });
-
-            if (student) {
-                res.status(200).send({ message: "Student deleted successfully" });
-            } else {
-                res.status(404).send("Student not found");
-            }
-        } else {
-            res.status(403).send("You are not authorized to delete this student");
+        if (!admin) {
+            return res.status(403).send("You are not authorized to delete this student");
         }
+
+        // Find and delete the student
+        const student = await Student.findOneAndDelete({ studentId: studentId, class: admin.class });
+
+        if (!student) {
+            return res.status(404).send("Student not found");
+
+
+        }
+
+        const user = await User.findOneAndDelete({ studentId: studentId });
+
+
+        
+        // Escape the backslashes to create a valid JavaScript string
+        
+           
+        if (student.imagePath) {
+            // Adjust the path accordingly
+            const filePath = path.join(__dirname, student.imagePath);
+            console.log(filePath)
+            fs.unlink(filePath, (err) => {
+                if (err) {
+                    return res.status(403).send('Error deleting image: ' + err.message);
+                } else {
+                    console.log('Image deleted successfully');
+                }
+            });
+        }
+
+
+        if (user) {
+           return  res.status(200).send({ message: "Student and associated user deleted successfully" });
+        } else {
+            return  res.status(200).send({ message: "Student deleted, but no associated user found" });
+        }
+
+        
+     
+        
+
+        // Delete the user associated with the student
+       
+
     } catch (error) {
+        console.error('Error deleting student and user:', error);
         res.status(500).send({ message: error.message });
     }
 };

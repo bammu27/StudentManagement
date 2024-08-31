@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import '../css/StudentR.css'
-import { Link, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import '../css/StudentR.css';
 
-const StudentR = () => {
+const UpdateStudent = () => {
   const [formData, setFormData] = useState({
-    studentId:'',
+    studentId: '',
     name: '',
     FatherName: '',
     MotherName: '',
@@ -14,8 +14,27 @@ const StudentR = () => {
     Address: '',
     class: '',
     image: null,
-    
   });
+  const { AdminId, studentId } = useParams();  // `id` refers to adminId or some identifier
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchStudent = async () => {
+      try {
+        const response = await fetch(`http://localhost:5050/student/${studentId}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch student details');
+        }
+        const data = await response.json();
+        setFormData(data);
+      } catch (error) {
+        console.error('Error fetching student:', error);
+        alert(`Failed to fetch student details: ${error.message}`);
+      }
+    };
+
+    fetchStudent();
+  }, [studentId]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -26,26 +45,20 @@ const StudentR = () => {
     }
   };
 
-  const { id } = useParams();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url = `http://localhost:5050/Admin/newstudent/${id}`; // Use template literal correctly
+    const url = `http://localhost:5050/Admin/student/${AdminId}/${studentId}`;
 
-    const formDataToSend = new FormData(); // Use FormData to send file
-    Object.keys(formData).forEach(key => {
-      if (key === 'image') {
-        formDataToSend.append(key, formData[key]);
-      } else {
-        formDataToSend.append(key, formData[key]);
-      }
+    const formDataToSend = new FormData();
+    Object.keys(formData).forEach((key) => {
+      formDataToSend.append(key, formData[key]);
     });
 
     try {
       const response = await fetch(url, {
-        method: 'POST',
-        body: formDataToSend, // Send FormData instead of JSON
+        method: 'PUT',
+        body: formDataToSend,
       });
 
       if (!response.ok) {
@@ -53,41 +66,21 @@ const StudentR = () => {
         throw new Error(data.message);
       }
 
-      const data = await response.json();
-      alert('Student added successfully');
-      setFormData({
-
-        studentId:'',
-        name: '',
-        FatherName: '',
-        MotherName: '',
-        DateOfBirth: '',
-        Email: '',
-        Phone: '',
-        Address: '',
-        class: '',
-        image: null,
-      });
-      
+      alert('Student updated successfully');
+      navigate(`/adminportal/${AdminId}`); // Redirect to AdminPortal after successful update
     } catch (error) {
-      console.error('Error adding student:', error);
-      alert(`Failed to add student: ${error.message}`);
+      console.error('Error updating student:', error);
+      alert(`Failed to update student: ${error.message}`);
     }
   };
 
-   
-
-
-    // Handle form submission
-   
   return (
     <div className="registration-form">
-      <Link to={`/adminportal/${id}`} className="admin-link" >{id}</Link>
-      <h2>Student Registration</h2>
+      <h2>Update Student</h2>
       <form onSubmit={handleSubmit} className='form'>
         <div>
           <label>Student ID:</label>
-          <input type="text" name="studentId" value={formData.studentId} onChange={handleChange} required />
+          <input type="text" name="studentId" value={formData.studentId}  required />
         </div>
         <div>
           <label>Name:</label>
@@ -121,7 +114,7 @@ const StudentR = () => {
 
         <div>
           <label>Class:</label>
-          <input type="text" name="class" value={formData.class} onChange={handleChange} required />
+          <input type="text" name="class" value={formData.class}  required />
         </div>
 
         <div>
@@ -131,16 +124,13 @@ const StudentR = () => {
 
         <div>
           <label>Upload Image:</label>
-          <input type="file" name="image" accept="image/*" onChange={handleChange} required />
+          <input type="file" name="image" accept="image/*" onChange={handleChange} />
         </div>
-
-        
 
         <button type="submit">Submit</button>
       </form>
     </div>
   );
-
 };
 
-export default StudentR;
+export default UpdateStudent;

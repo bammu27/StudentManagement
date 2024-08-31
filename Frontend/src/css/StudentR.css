@@ -7,6 +7,7 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   font-family: 'Roboto';
+  
 }
 
 .form{
@@ -37,7 +38,7 @@
 }
 
 .registration-form input[type="file"] {
-  padding: 3px;
+  padding: 10px;
 }
 
 .registration-form button {
@@ -53,4 +54,22 @@
 
 .registration-form button:hover {
   background-color: #0056b3;
+}
+
+
+/* Add this to your Admin.css */
+
+.admin-link {
+  color: #007bff;  /* Blue color */
+  text-decoration: none;  /* Remove the underline */
+  font-weight: bold;  /* Make the text bold */
+  padding: 10px 15px;  /* Add some padding */
+  border-radius: 5px;  /* Round the corners */
+  transition: background-color 0.3s ease;  /* Smooth transition for hover effect */
+ font-size: 1.2rem;
+}
+
+.admin-link:hover {
+  background-color: #f0f0f0;  /* Light grey background on hover */
+  color: #0056b3;  /* Darker blue on hover */
 }
